@@ -45,17 +45,48 @@ a {
   color: inherit;
 }
 
-/* .container {
-  width: 100vw;
-} */
+.container {
+  width: 90vw;
+}
 
 header {
+  width: 100%;
+  background-color: #896c60;
   margin-bottom: 20px;
 }
 
-.nav-wrapper {
+.nav {
+  display: flex;
+  justify-content: space-between;
   padding: 0 20px;
+}
+
+.nav-options {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.search-input {
+  padding: 10px;
   background-color: #896c60;
+  color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+}
+.search-input:focus {
+  outline: none;
+}
+.search-input::placeholder {
+  color: #ffffff;
+}
+
+.login-link{
+  padding: 16px 20px;
+  transition: background-color 200ms ease-in-out;
+}
+.login-link:hover {
+  background-color: #775e54;
 }
 
 .brand-logo {
@@ -66,13 +97,11 @@ header {
   top: 4px;
 }
 
-input {
-  color: #ffffff;
-}
-
-input:focus {
-  border-bottom: 1px solid rgba(235, 174, 22, 0.6) !important;
-  box-shadow: 0 1px 0 0 rgba(235, 174, 22, 0.6) !important;
+.sort-form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 40px;
 }
 
 .title {
@@ -80,7 +109,17 @@ input:focus {
   font-weight: 600;
   text-align: center;
   color: #3e2723;
-  padding-bottom: 40px;
+}
+
+.abv-select {
+  padding: 8px 0 8px 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #686868;
+}
+.abv-select:focus {
+  outline: none;
 }
 
 #beers_list {
@@ -93,7 +132,7 @@ input:focus {
 
 .beer_item {
   width: 300px;
-  height: 434px;
+  height: 426px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -118,6 +157,22 @@ input:focus {
 .beer_item-tag {
   color: #757575;
   font-style: italic;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+table {
+  width: 100%;
+  font-size: 14px;
+}
+td {
+  padding: 8px;
+}
+tr:nth-child(odd) {
+  background-color: #e7e5e5;
+}
+tr:nth-child(even) {
+  background-color: #f8f5f5;
 }
 
 .add-btn {
@@ -162,6 +217,9 @@ input:focus {
   padding: 10px 12px;
   margin: 0 20px 20px 0;
   background-color: rgba(235, 174, 22, 0.6);
+}
+.page-btn:focus {
+  outline: none;
 }
 
 .page-btn:active {

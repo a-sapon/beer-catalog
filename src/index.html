@@ -7,22 +7,33 @@
   </head>
   <body>
     <header>
-      <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo"></a>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li>
-              <input type="text" placeholder="Search..." autocomplete="off" />
-            </li>
-            <li>
-              <a href="#" class="login-link">Login | Signup</a>
-            </li>
-          </ul>
-        </div>
+      <nav class="nav container">
+        <a href="#" class="brand-logo"></a>
+        <ul class="nav-options">
+          <li>
+            <input type="text" placeholder="Search..." autocomplete="off" class="search-input" />
+          </li>
+          <li>
+            <a href="#" class="login-link">Login | Signup</a>
+          </li>
+        </ul>
       </nav>
     </header>
     <main>
-      <h1 class="title">Check out our latest beers!</h1>
+      <form class="sort-form">
+        <h1 class="title">Check out our latest beers!</h1>
+
+        <select name="abv" id="abv-select" class="abv-select">
+          <option value="" disabled selected>Choose alc/vol %</option>
+          <option value="&abv_lt=3">Super light ~ 1%</option>
+          <option value="&abv_gt=2&abv_lt=5">Light ~ 4%</option>
+          <option value="&abv_gt=4&abv_lt=10">Medium ~ 5-9% </option>
+          <option value="&abv_gt=9&abv_lt=18">Strong ~ 10-17%</option>
+          <option value="&abv_gt=17">Super strong ~ 17-55%</option>
+        </select>
+
+      </form>
+
       <ul id="beers_list"></ul>
       <div class="pagination">
         <ul id="pagination-list"></ul>

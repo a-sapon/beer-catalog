@@ -4,11 +4,17 @@ export default {
   current_page: 1,
   items_per_page: 4,
   total_beers_num: 80,
+  abv: '',
 
   async fetchBeers() {
     const response = await fetch(
-      `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}`,
+      `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}${this.abv}`,
     );
+    if (this.abv !== '') {
+      const response = await fetch(`${baseUrl}beers?${this.abv}`);
+      const result = await response.json();
+      this.total_beers_num = result.length;
+    }
     return await response.json();
   },
 
@@ -37,4 +43,8 @@ export default {
   getPagesNumber() {
     return Math.ceil(this.total_beers_num / this.items_per_page);
   },
+
+  setAbvParams(params) {
+    this.abv = params;
+  }
 };

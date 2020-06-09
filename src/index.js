@@ -1,15 +1,15 @@
 import beerServices from './services/services';
-import 'materialize-css/dist/css/materialize.min.css';
-import 'materialize-css/dist/js/materialize.min';
 import './styles.css';
 
 const refs = {
+  sortForm: document.querySelector('.sort-form'),
   beersList: document.getElementById('beers_list'),
   paginationContainer: document.querySelector('.pagination'),
   paginationList: document.getElementById('pagination-list'),
 };
 
 window.addEventListener('DOMContentLoaded', loadStartPage);
+refs.sortForm.addEventListener('change', handleSelect);
 refs.paginationList.addEventListener('click', displaySelectedPage);
 refs.paginationContainer.addEventListener('click', handleArrowClick);
 
@@ -25,6 +25,12 @@ async function displayBeers() {
   setUpPagination();
 }
 
+async function handleSelect(e) {
+  const selectValue = e.currentTarget.elements.abv.value;
+  beerServices.setAbvParams(selectValue);
+  await displayBeers();
+}
+
 function createMarkup(arr) {
   const markup = arr.reduce((acc, value) => {
     return (acc += `
@@ -32,7 +38,6 @@ function createMarkup(arr) {
       <img src="${value.image_url}" class="beer_item-img" alt="beer img">
       <h3 class="beer_item-title">${value.name}</h3>
       <p class="beer_item-tag">#${value.tagline}</p>
-
       <table>
         <tr>
           <td>light/dark/weat:</td>
@@ -47,7 +52,6 @@ function createMarkup(arr) {
           <td>${value.abv}%</td>
         </tr>
       </table>
-      
     </li>
     `);
   }, '');
@@ -90,6 +94,7 @@ async function handleArrowClick(e) {
     await displayBeers();
   }
 }
+
 
 // filter using abv for alco %
 // filter using ibu for bitterness level
