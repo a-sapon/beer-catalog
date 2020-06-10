@@ -3,10 +3,11 @@ const baseUrl = 'https://api.punkapi.com/v2/';
 export default {
   current_page: 1,
   items_per_page: 4,
-  total_beers_num: 80,
+  total_beers_num: 325,
   abv: '',
   ibu: '',
   ebc: '',
+  allBeers: [],
 
   async fetchBeers() {
     const response = await fetch(
@@ -18,6 +19,14 @@ export default {
       this.total_beers_num = result.length;
     }
     return await response.json();
+  },
+
+  async fetchAllBeers() {
+    for (let i = 1; i < 6; i++) {
+      const response = await fetch(`${baseUrl}beers?page=${i}&per_page=80${this.abv}${this.ibu}${this.ebc}`);
+      const result = await response.json();
+      this.allBeers = [...this.allBeers, ...result];
+    }
   },
 
   setCurrentPage(page) {
