@@ -5,13 +5,15 @@ export default {
   items_per_page: 4,
   total_beers_num: 80,
   abv: '',
+  ibu: '',
+  ebc: '',
 
   async fetchBeers() {
     const response = await fetch(
-      `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}${this.abv}`,
+      `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}${this.abv}${this.ibu}${this.ebc}`,
     );
-    if (this.abv !== '') {
-      const response = await fetch(`${baseUrl}beers?${this.abv}`);
+    if (this.abv !== '' || this.ibu !== '' || this.ebc !== '') {
+      const response = await fetch(`${baseUrl}beers?${this.abv}${this.ibu}${this.ebc}`);
       const result = await response.json();
       this.total_beers_num = result.length;
     }
@@ -44,7 +46,15 @@ export default {
     return Math.ceil(this.total_beers_num / this.items_per_page);
   },
 
-  setAbvParams(params) {
-    this.abv = params;
+  setAbvValue(value) {
+    this.abv = value;
+  },
+
+  setIbuValue(value) {
+    this.ibu = value;
+  },
+
+  setEbcValue(value) {
+    this.ebc = value;
   }
 };

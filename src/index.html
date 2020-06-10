@@ -19,17 +19,35 @@
         </ul>
       </nav>
     </header>
-    <main>
+    <main class="main-container container">
       <form class="sort-form">
-        <h1 class="title">Check out our latest beers!</h1>
+        <h1 class="title">Sort the results</h1>
 
-        <select name="abv" id="abv-select" class="abv-select">
+        <select name="abv" class="filter-select">
           <option value="" disabled selected>Choose alc/vol %</option>
           <option value="&abv_lt=3">Super light ~ 1%</option>
           <option value="&abv_gt=2&abv_lt=5">Light ~ 4%</option>
-          <option value="&abv_gt=4&abv_lt=10">Medium ~ 5-9% </option>
+          <option value="&abv_gt=4&abv_lt=10">Medium ~ 5-9%</option>
           <option value="&abv_gt=9&abv_lt=18">Strong ~ 10-17%</option>
           <option value="&abv_gt=17">Super strong ~ 17-55%</option>
+        </select>
+
+        <select name="ibu" class="filter-select">
+          <option value="" disabled selected>Bitterness level</option>
+          <option value="&ibu_lt=10">Pale Lager (bitterness 0-10 units)</option>
+          <option value="&ibu_gt=9&ibu_lt=30">Blond Ale (bitterness 10-30 units)</option>
+          <option value="&ibu_gt=29&ibu_lt=50">Red Ale (bitterness 30-50 units)</option>
+          <option value="&ibu_gt=49&ibu_lt=100">Porter (bitterness 50-100 units)</option>
+          <option value="&ibu_gt=99">Stout (bitterness 100+ units)</option>
+        </select>
+
+        <select name="ebc" class="filter-select">
+          <option value="" disabled selected>Beer color</option>
+          <option value="&ebc_gt=0&ebc_lt=8">Pale/blond</option>
+          <option value="&ebc_gt=7&ebc_lt=20">Yellow/gold</option>
+          <option value="&ebc_gt=19&ebc_lt=39">Amber/copper</option>
+          <option value="&ebc_gt=38&ebc_lt=69">Dark coper/brown</option>
+          <option value="&ebc_gt=68">Dark brown/black</option>
         </select>
 
       </form>

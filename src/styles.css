@@ -46,7 +46,8 @@ a {
 }
 
 .container {
-  width: 90vw;
+  margin: 0 auto;
+  max-width: 964px;
 }
 
 header {
@@ -111,15 +112,18 @@ header {
   color: #3e2723;
 }
 
-.abv-select {
+.filter-select {
   padding: 8px 0 8px 10px;
   border: 1px solid #cccccc;
   border-radius: 4px;
   font-size: 16px;
   color: #686868;
 }
-.abv-select:focus {
+.filter-select:focus {
   outline: none;
+}
+.filter-select option[selected="true"] {
+  color: #000000;
 }
 
 #beers_list {
@@ -202,10 +206,6 @@ tr:nth-child(even) {
   cursor: pointer;
   transition: transform 200ms ease-in-out;
 }
-.arrow-left:hover,
-.arrow-right:hover {
-  transform: scale(1.1) translateY(-50%);
-}
 .arrow-left {
   left: -60px;
 }
@@ -229,4 +229,9 @@ tr:nth-child(even) {
 .active {
   background-color: #896c60;
   color: #ffffff;
+}
+
+
+.no-product {
+  text-align: center;
 }
