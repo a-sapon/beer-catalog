@@ -1,3 +1,6 @@
+'use strict';
+
+import './services/register';
 import beerServices from './services/beerServices';
 import {
   createMarkup,
@@ -13,7 +16,7 @@ const refs = {
   paginationContainer: document.querySelector('.pagination'),
   paginationList: document.getElementById('pagination-list'),
   noProductWrapper: document.querySelector('.no-product-wrapper'),
-  searchInput: document.querySelector('.search-input'),
+  searchInput: document.querySelector('.search-input')
 };
 
 window.addEventListener('DOMContentLoaded', loadStartPage);
@@ -28,7 +31,7 @@ async function displayBeers() {
   const beers = await beerServices.fetchBeers();
   if (beers.length !== 0) {
     const markup = createMarkup(beers);
-    inserctToDom(markup);
+    insertToDom(markup);
     refs.noProductWrapper.innerHTML = '';
   } else {
     refs.noProductWrapper.innerHTML = '';
@@ -39,7 +42,7 @@ async function displayBeers() {
   setUpPagination();
 }
 
-function inserctToDom(markup) {
+function insertToDom(markup) {
   refs.beersList.innerHTML = '';
   refs.beersList.insertAdjacentHTML('beforeend', markup);
 }
@@ -85,6 +88,8 @@ async function handleArrowClick(e) {
   }
 }
 
+// ---------- Search ----------
+
 (async () => await beerServices.fetchAllBeers())();
 
 const delay = debounce(async function handleSearchInputChange(e) {
@@ -93,7 +98,7 @@ const delay = debounce(async function handleSearchInputChange(e) {
       item.name.toLowerCase().includes(e.target.value.toLowerCase()),
     );
     const markup = createMarkup(filteredBeers);
-    inserctToDom(markup);
+    insertToDom(markup);
     refs.paginationList.innerHTML = '';
     refs.paginationContainer.removeEventListener('click', handleArrowClick);
   } else await displayBeers();
