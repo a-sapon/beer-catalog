@@ -2,4 +2,4 @@
 
 Products are being fetched from the [Punk API](https://punkapi.com/). Built with webpack.
 
-You can check out the deployed project **[here](/)**.
+You can check out the deployed project **[here](https://a-sapon.github.io/beer-catalog/)**.
