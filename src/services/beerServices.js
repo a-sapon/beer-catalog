@@ -2,12 +2,13 @@ const baseUrl = 'https://api.punkapi.com/v2/';
 
 export default {
   current_page: 1,
-  items_per_page: 4,
+  items_per_page: 6,
   total_beers_num: 325,
   abv: '',
   ibu: '',
   ebc: '',
   allBeers: [],
+  addedToCartBeers: [],
 
   async fetchBeers() {
     const response = await fetch(
@@ -27,6 +28,16 @@ export default {
       const result = await response.json();
       this.allBeers = [...this.allBeers, ...result];
     }
+  },
+
+  async addBeerToCart(id) {
+    const response = await fetch(`${baseUrl}beers/${id}`);
+    const result = await response.json();
+    this.addedToCartBeers = [...this.addedToCartBeers, ...result];
+  },
+
+  deleteBeerFromCart(id) {
+    this.addedToCartBeers = this.addedToCartBeers.filter(beer => beer.id !== id);
   },
 
   setCurrentPage(page) {

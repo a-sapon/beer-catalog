@@ -47,8 +47,10 @@ a {
 
 .container {
   margin: 0 auto;
-  max-width: 964px;
+  max-width: 1020px;
 }
+
+/* ------------- Navbar ------------- */
 
 header {
   width: 100%;
@@ -66,6 +68,14 @@ header {
   display: flex;
   align-items: center;
   color: #ffffff;
+}
+
+.brand-logo {
+  width: 50px;
+  height: 50px;
+  background: url(./images/beer-mug.png);
+  background-size: cover;
+  top: 4px;
 }
 
 .search-input {
@@ -90,13 +100,25 @@ header {
   background-color: #775e54;
 }
 
-.brand-logo {
-  width: 50px;
-  height: 50px;
-  background: url(./images/beer-mug.png);
-  background-size: cover;
-  top: 4px;
+.login-inactive {
+  cursor: default;
 }
+.login-inactive:hover {
+  background-color: #896c60;
+}
+
+.cart {
+  width: 24px;
+  height: 24px;
+  fill: #e7e7e7;
+  transition: background-color 200ms ease-in-out;
+}
+.cart:hover {
+  fill: #ffffff;
+  cursor: pointer;
+}
+
+/* ----------------- Filter fields ------------------- */
 
 .sort-form {
   display: flex;
@@ -151,7 +173,6 @@ header {
   font-size: 20px;
   font-weight: 600;
   text-align: center;
-  max-width: 220px;
   padding: 10px 0;
 }
 
@@ -326,4 +347,55 @@ tr:nth-child(even) {
   color: #e21818;
   margin: -12px 0 10px 0;
   text-align: left;
+}
+
+/* --------- CART ----------- */
+
+#overlay-cart .modal {
+  padding: 10px 20px;
+  max-width: 640px;
+}
+
+#overlay-cart .close-btn {
+  top: 12px;
+}
+
+#overlay-cart h3 {
+  margin-bottom: 10px;
+}
+
+.cart_list {
+  width: 100%;
+}
+
+.cart_list-item, .item-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart_list-item {
+  padding: 0 20px;
+  border-bottom: 1px solid #cccccc;
+  margin-bottom: 10px;
+}
+
+.item-info img {
+  max-width: 16px;
+  margin: 0 16px 10px 0;
+}
+
+.item-info .beer_item-title {
+  font-size: 16px;
+  text-align: left;
+}
+
+#delete {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  fill: #efb114;
+}
+#delete:hover {
+  fill: #e2a713;
 }

@@ -1,9 +1,10 @@
 'use strict';
 
 import './services/register';
+import './services/cart';
 import beerServices from './services/beerServices';
 import {
-  createMarkup,
+  createBeerCard,
   createPageButtonMarkup,
   createNoProductDiv,
 } from './services/markupCreators';
@@ -30,11 +31,12 @@ async function loadStartPage() {
 async function displayBeers() {
   const beers = await beerServices.fetchBeers();
   if (beers.length !== 0) {
-    const markup = createMarkup(beers);
+    const markup = createBeerCard(beers);
     insertToDom(markup);
     refs.noProductWrapper.innerHTML = '';
   } else {
     refs.noProductWrapper.innerHTML = '';
+    refs.beersList.innerHTML = '';
     const noProductDiv = createNoProductDiv();
     refs.noProductWrapper.append(noProductDiv);
     refs.paginationContainer.removeEventListener('click', handleArrowClick);
@@ -97,7 +99,7 @@ const delay = debounce(async function handleSearchInputChange(e) {
     const filteredBeers = beerServices.allBeers.filter(item =>
       item.name.toLowerCase().includes(e.target.value.toLowerCase()),
     );
-    const markup = createMarkup(filteredBeers);
+    const markup = createBeerCard(filteredBeers);
     insertToDom(markup);
     refs.paginationList.innerHTML = '';
     refs.paginationContainer.removeEventListener('click', handleArrowClick);
