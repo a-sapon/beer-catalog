@@ -92,7 +92,7 @@ header {
   color: #ffffff;
 }
 
-.login-link{
+.login-link {
   padding: 16px 20px;
   transition: background-color 200ms ease-in-out;
 }
@@ -155,7 +155,7 @@ header {
 
 .beer_item {
   width: 300px;
-  height: 426px;
+  height: 420px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -163,6 +163,7 @@ header {
   border-radius: 20px;
   padding: 20px;
   margin: 0 40px 40px 0;
+  position: relative;
 }
 
 .beer_item-img {
@@ -197,8 +198,67 @@ tr:nth-child(even) {
   background-color: #f8f5f5;
 }
 
-.add-btn {
-  text-decoration: underline;
+.add-to-cart-wrapper {
+  position: absolute;
+  top: 8px;
+  right: 6px;
+}
+
+.add-to-cart {
+  font-size: 12px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  padding-left: 32px;
+  height: 25px;
+  width: 72px;
+  display: flex;
+  align-items: center;
+}
+
+.add-to-cart input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+.add-to-cart:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.add-to-cart input:checked ~ .checkmark {
+  background-color: #f8b610;
+}
+
+.checkmark:after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+
+.add-to-cart input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.add-to-cart .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
 }
 
 /* PAGINATION */
@@ -262,8 +322,8 @@ tr:nth-child(even) {
   position: fixed;
   top: 0;
   left: 0;
+  bottom: 0;
   width: 100vw;
-  height: 100vh;
   background-color: rgba(0, 0, 0, 0.3);
   z-index: 1;
   transition: opacity 200ms ease-in-out, visibility 200ms ease-in-out;
@@ -290,8 +350,8 @@ tr:nth-child(even) {
   background-color: #ffffff;
   color: #444444;
   text-align: center;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2),
-  0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px, 1px, -1px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14),
+    0 2px, 1px, -1px rgba(0, 0, 0, 0.12);
   transform: scale(1.1);
   transition: transform 200ms ease-in-out;
   position: relative;
@@ -350,10 +410,13 @@ tr:nth-child(even) {
 }
 
 /* --------- CART ----------- */
-
+#overlay-cart {
+  overflow-y: scroll;
+}
 #overlay-cart .modal {
   padding: 10px 20px;
   max-width: 640px;
+  overflow-y: auto;
 }
 
 #overlay-cart .close-btn {
@@ -368,7 +431,8 @@ tr:nth-child(even) {
   width: 100%;
 }
 
-.cart_list-item, .item-info {
+.cart_list-item,
+.item-info {
   display: flex;
   justify-content: space-between;
   align-items: center;

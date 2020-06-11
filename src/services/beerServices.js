@@ -15,7 +15,9 @@ export default {
       `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}${this.abv}${this.ibu}${this.ebc}`,
     );
     if (this.abv !== '' || this.ibu !== '' || this.ebc !== '') {
-      const response = await fetch(`${baseUrl}beers?${this.abv}${this.ibu}${this.ebc}`);
+      const response = await fetch(
+        `${baseUrl}beers?${this.abv}${this.ibu}${this.ebc}`,
+      );
       const result = await response.json();
       this.total_beers_num = result.length;
     }
@@ -24,7 +26,9 @@ export default {
 
   async fetchAllBeers() {
     for (let i = 1; i < 6; i++) {
-      const response = await fetch(`${baseUrl}beers?page=${i}&per_page=80${this.abv}${this.ibu}${this.ebc}`);
+      const response = await fetch(
+        `${baseUrl}beers?page=${i}&per_page=80${this.abv}${this.ibu}${this.ebc}`,
+      );
       const result = await response.json();
       this.allBeers = [...this.allBeers, ...result];
     }
@@ -37,7 +41,10 @@ export default {
   },
 
   deleteBeerFromCart(id) {
-    this.addedToCartBeers = this.addedToCartBeers.filter(beer => beer.id !== id);
+    this.addedToCartBeers = this.addedToCartBeers.filter(
+      beer => beer.id !== id,
+    );
+    console.log(this.addedToCartBeers);
   },
 
   setCurrentPage(page) {
@@ -76,5 +83,5 @@ export default {
 
   setEbcValue(value) {
     this.ebc = value;
-  }
+  },
 };

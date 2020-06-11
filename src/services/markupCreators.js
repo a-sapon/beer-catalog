@@ -1,4 +1,4 @@
-import beerServices from "./beerServices";
+import beerServices from './beerServices';
 import beerImage from '../images/beer.png';
 
 export const createBeerCard = arr => {
@@ -30,10 +30,12 @@ export const createBeerCard = arr => {
           <td>${beerEbc}</td>
         </tr>
       </table>
-      <form class="add-to-cart-form">
-        <input type="checkbox" name="addToCartInput" id="${value.id}">
-        <label for="${value.id}">Add to cart</label>
-      </form>
+      <div class="add-to-cart-wrapper">
+        <label for="${value.id}" class="add-to-cart">Add to cart
+          <input type="checkbox" name="addToCartInput" id="${value.id}">
+          <span class="checkmark"></span>
+        </label>
+      </div>
     </li>
     `);
   }, '');
@@ -60,7 +62,7 @@ function convertBeerEbcToWords(beer) {
   return beerEbc;
 }
 
-export const createPageButtonMarkup = (page) => {
+export const createPageButtonMarkup = page => {
   const button = document.createElement('button');
   button.classList.add('page-btn');
   button.innerText = page;
@@ -68,7 +70,7 @@ export const createPageButtonMarkup = (page) => {
     button.classList.add('active');
   }
   return button;
-}
+};
 
 export const createNoProductDiv = () => {
   const textDiv = document.createElement('div');
@@ -76,9 +78,9 @@ export const createNoProductDiv = () => {
   textDiv.innerText =
     "Sorry, we don't have any products matching your request.";
   return textDiv;
-}
+};
 
-export const createCartBeerItem = (arr) => {
+export const createCartBeerItem = arr => {
   const markup = arr.reduce((acc, value) => {
     let beerImg;
     if (value.image_url) {
@@ -86,7 +88,7 @@ export const createCartBeerItem = (arr) => {
     } else {
       beerImg = beerImage;
     }
-    return acc += `
+    return (acc += `
     <li class="cart_list-item">
       <div class="item-info">
         <img src="${beerImg}" alt="img">
@@ -94,7 +96,7 @@ export const createCartBeerItem = (arr) => {
       </div>
       <svg id="delete" data-id="${value.id}" viewBox="0 0 24 24" fill-rule="evenodd" clip-rule="evenodd"><path data-id="${value.id}" id="delete" d="M19 24h-14c-1.104 0-2-.896-2-2v-17h-1v-2h6v-1.5c0-.827.673-1.5 1.5-1.5h5c.825 0 1.5.671 1.5 1.5v1.5h6v2h-1v17c0 1.104-.896 2-2 2zm0-19h-14v16.5c0 .276.224.5.5.5h13c.276 0 .5-.224.5-.5v-16.5zm-9 4c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm6 0c0-.552-.448-1-1-1s-1 .448-1 1v9c0 .552.448 1 1 1s1-.448 1-1v-9zm-2-7h-4v1h4v-1z"/></svg>
     </li>
-    `
+    `);
   }, '');
   return markup;
-}
+};
