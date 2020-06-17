@@ -44,7 +44,6 @@ export default {
     this.addedToCartBeers = this.addedToCartBeers.filter(
       beer => beer.id !== id,
     );
-    console.log(this.addedToCartBeers);
   },
 
   setCurrentPage(page) {

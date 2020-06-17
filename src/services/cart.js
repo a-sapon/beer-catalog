@@ -57,6 +57,8 @@ function deleteBeerFromCart(e) {
     const id = Number(e.target.dataset.id);
     beerServices.deleteBeerFromCart(id);
     updateCartList();
+    const deletedBeerInput = document.getElementById(id);
+    deletedBeerInput.checked = false;
 
     if (beerServices.addedToCartBeers.length === 0) {
       refs.cartList.insertAdjacentHTML(
