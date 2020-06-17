@@ -15,11 +15,13 @@ export default {
       `${baseUrl}beers?page=${this.current_page}&per_page=${this.items_per_page}${this.abv}${this.ibu}${this.ebc}`,
     );
     if (this.abv !== '' || this.ibu !== '' || this.ebc !== '') {
-      const response = await fetch(
-        `${baseUrl}beers?${this.abv}${this.ibu}${this.ebc}`,
+      const responseAll = await fetch(
+        `${baseUrl}beers?${this.abv}${this.ibu}${this.ebc}&per_page=80`,
       );
-      const result = await response.json();
+      const result = await responseAll.json();
       this.total_beers_num = result.length;
+    } else if (this.abv === '' && this.ibu === '' && this.ebc === '') {
+      this.total_beers_num = 325;
     }
     return await response.json();
   },
@@ -68,6 +70,10 @@ export default {
     }
   },
 
+  resetPage() {
+    this.current_page = 1;
+  },
+
   getPagesNumber() {
     return Math.ceil(this.total_beers_num / this.items_per_page);
   },
@@ -76,11 +82,23 @@ export default {
     this.abv = value;
   },
 
+  resetAbvValue() {
+    this.abv = '';
+  },
+
   setIbuValue(value) {
     this.ibu = value;
   },
 
+  resetIbuValue() {
+    this.ibu = '';
+  },
+
   setEbcValue(value) {
     this.ebc = value;
+  },
+
+  resetEbcValue() {
+    this.ebc = '';
   },
 };

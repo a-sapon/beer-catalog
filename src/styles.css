@@ -145,6 +145,23 @@ header {
   outline: none;
 }
 
+.filter-select-wrapper {
+  position: relative;
+}
+
+.reset {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -16px;
+  color: #686868;
+  font-size: 20px;
+}
+.reset:hover {
+  color: #000000;
+  text-shadow: 0px 0px 6px rgba(86,86,86,0.6);
+}
+
 #beers_list {
   display: flex;
   justify-content: center;

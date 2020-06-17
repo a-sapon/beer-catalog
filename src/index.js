@@ -22,6 +22,7 @@ const refs = {
 
 window.addEventListener('DOMContentLoaded', loadStartPage);
 refs.sortForm.addEventListener('change', handleSelect);
+refs.sortForm.addEventListener('click', resetFilters);
 refs.paginationList.addEventListener('click', displaySelectedPage);
 
 async function loadStartPage() {
@@ -50,15 +51,36 @@ function insertToDom(markup) {
 }
 
 async function handleSelect(e) {
-  const ibuValue = e.currentTarget.elements.ibu.value;
-  const abvValue = e.currentTarget.elements.abv.value;
-  const ebcValue = e.currentTarget.elements.ebc.value;
-  if (ibuValue || abvValue || ebcValue) {
-    beerServices.setIbuValue(ibuValue);
-    beerServices.setAbvValue(abvValue);
-    beerServices.setEbcValue(ebcValue);
+  const ibu = e.currentTarget.elements.ibu;
+  const abv = e.currentTarget.elements.abv;
+  const ebc = e.currentTarget.elements.ebc;
+
+  if (ibu.value || abv.value || ebc.value) {
+    beerServices.setIbuValue(ibu.value);
+    beerServices.setAbvValue(abv.value);
+    beerServices.setEbcValue(ebc.value);
+    beerServices.resetPage();
     await displayBeers();
   }
+}
+
+async function resetFilters(e) {
+  if (!e.target.id) return;
+  if (e.target.id === 'abv-reset') {
+    beerServices.resetAbvValue();
+    refs.sortForm.elements.abv.value = '';
+    await displayBeers();
+  } else if (e.target.id === 'ibu-reset') {
+    beerServices.resetIbuValue();
+    refs.sortForm.elements.ibu.value = '';
+    await displayBeers();
+  } else if (e.target.id === 'ebc-reset') {
+    beerServices.resetEbcValue();
+    refs.sortForm.elements.ebc.value = '';
+    await displayBeers();
+  }
+  beerServices.resetPage()
+  setUpPagination();
 }
 
 function setUpPagination() {
